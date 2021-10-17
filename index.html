@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="nb">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta name="author" content="Valerie Halvorsen">
+        <meta name="description" content="PEPSJEKK lar brukeren utføre en PEP-sjekk ved å søke i databasen vår.">
+        
+        <title>PEPSJEKK</title>
+
+        <!-- normalize.css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+        <!-- font-family -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <!-- min egen stylesheet -->
+        <link rel="stylesheet" href="styles/styles.css">
+
+        <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+        <script defer src="scripts/test.js"></script>
+    </head>
+
+    <body>
+        <nav>
+            <div class="pepsjekk-logo">
+                <img src="images/PEPSJEKK.svg" alt="pepsjekk-logo">
+            </div></nav>
+        <h1>Utfør en PEP-sjekk</h1>
+        <p>Tast inn et navn for å søke i vår database</p>
+        <input type="text" id="pep_search_input" onfocus="this.value=''" placeholder="Donald Trump">
+        <button type="button" id="pep_search_button" onclick="">START</button>
+        <footer><span class="iconify" data-icon="ant-design:copyright-circle-outlined"></span> 2021 PEPSJEKK</footer>
+    </body>
+
+</html>
