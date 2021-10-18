@@ -59,64 +59,144 @@ function allHits(input, data) {
         return false
     }
     var lookup = {};
-    for (var i = 0, len = data.length; i < len; i++) {
+    for (var i=0, len=data.length; i<len; i++) {
         lookup[data[i].name] = data[i];
         lookup[data[i].aliases] = data[i];
+        /* for (var j=0, len=lookup.length; j<len; j++) {
+            console.log(i,j)
+            if (data[i] === j) {
+                console.log('duplicate')
+                continue
+            } else {
+                lookup[data[i].aliases] = data[i];
+            }
+        } */ 
+        
     }
-    var result = []
+    console.log(lookup)
+    var results = []
     var allNames = Object.keys(lookup);
     allNames.forEach(function(name) {
         if (name.toLowerCase().startsWith(input.toLowerCase())
         || name.toLowerCase().includes(' '+input.toLowerCase())
         || name.toLowerCase().includes(';'+input.toLowerCase())) {
-            result.push(lookup[name]);
+            if(results.some(person => person.name === name)) {
+                console.log('already exists')
+                const removeIndex = results.findIndex(obj => obj.name === name);
+                results.splice(removeIndex, 1);
+                results.push(lookup[name]);
+            } else {
+                results.push(lookup[name]);
+            }
         };
     });
-    var sortedResult = result.sort((p1, p2) => p1.name > p2.name);
+    var sortedResult = results.sort((p1, p2) => p1.name > p2.name);
     return sortedResult; 
 }
 
-function searchInput() {
-    var input = document.getElementById("pep_search_input").value;
+function searchInput(id) {
+    var input = document.getElementById(id).value;
     var results = pep.findName(input)
     console.log(results)
     return results
 }
 
-function switchElement(ny, gammel) {
-    document.getElementById(ny).classList.remove('hidden');
-    document.getElementById(ny).classList.add('visible');
-    document.getElementById(gammel).classList.remove('visible');
-    document.getElementById(gammel).classList.add('hidden');
+function checkIsResultsPage() {
+    if (document.getElementById("hjem").classList.contains('hidden')){
+        return true
+    }
+}
+
+function switchElement(results, home) {
+    if (checkIsResultsPage()) {return} else {
+    document.getElementById(results).classList.remove('hidden');
+    document.getElementById(results).classList.add('visible');
+    document.getElementById(home).classList.remove('visible');
+    document.getElementById(home).classList.add('hidden');}
+}
+
+
+function addElement(element, parentId, divId, divClass, data='') {
+    const newDiv = document.createElement(element);
+    newDiv.setAttribute('id', divId)
+    newDiv.setAttribute('class', divClass)
+  
+    const newContent = document.createTextNode(data);
+    newDiv.appendChild(newContent);
+  
+    const currentDiv = document.getElementById(parentId);
+    currentDiv.appendChild(newDiv);
+  }
+
+function listBuilder(results) {
+    let regionName = new Intl.DisplayNames(['en'], {type: 'region'});
+    for (var i = 0, len = results.length; i < len; i++) {
+        addElement('div', "resultat_liste", "hit_"+i, "hit-item")
+        addElement('button', "hit_"+i, "name_"+results[i].id, "hit-name collapsible", results[i].name)
+        addElement('div', "hit_"+i, "hit_"+i+"_content", "hit-info collapsed-content")
+        addElement('div', "hit_"+i+"_content", "birthdate_"+results[i].id, "hit-birth", results[i].birth_date)
+        addElement('div', "hit_"+i+"_content", "country_"+results[i].id, "hit-country", regionName.of(results[i].countries))
+        addElement('div', "hit_"+i+"_content", "category_"+results[i].id, "hit-category", results[i].dataset)
+    }
 }
 
 function executeSearch() {
-    var results = searchInput()
-    switchElement("resultater", "hjem")
-
-    for (var i = 0, len = results.length; i < len; i++) {
-        
+    if (checkIsResultsPage()) {
+        var results = searchInput("results_search_input")
+    } else {
+        switchElement("resultater", "hjem")
+        var results = searchInput("home_search_input")
     }
 
+    if (results == false) {
+        document.getElementById("antall_hits").innerHTML = `: Ingen`
+        addElement('p', "resultater", "no_results", "search-description", "Ops! Vi fant ingen PEP-er. Gjerne prøv igjen.")
+    } else {
+        document.getElementById("antall_hits").innerHTML = `: ${results.length}`
+    }
+    
+    
+    if (document.getElementById("resultat_liste")) {
+        document.getElementById("resultat_liste").remove()
+    }
+    addElement('ul', "resultater", "resultat_liste", "all-hits col-9")
+    
+    listBuilder(results)
+    collapsible()
     return results
+}
+
+/* ------- COLLAPSIBLE RESULTS ------- */
+
+function collapsible() {
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight){
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "60px";
+        } 
+      });
+    }
 }
 
 
 
 /* ------- ENTER TO SEARCH ------- */
-$("#pep_search_input").keyup(function(event) {
+$("#home_search_input").keyup(function(event) {
     if (event.keyCode === 13) {
-        $("#pep_search_button").click();
+        $("#home_search_button").click();
     }
 });
 
-$("#pep_search_input").keyup(function(event) {
+$("#results_search_input").keyup(function(event) {
     if (event.keyCode === 13) {
         $("#search_icon_button").click();
     }
 });
-
-/* $("#pep_search_input").click(function() {
-    alert("Button clicked");
-}); */
 
