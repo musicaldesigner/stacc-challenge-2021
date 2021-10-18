@@ -80,18 +80,21 @@ function allHits(input, data) {
         if (name.toLowerCase().startsWith(input.toLowerCase())
         || name.toLowerCase().includes(' '+input.toLowerCase())
         || name.toLowerCase().includes(';'+input.toLowerCase())) {
-            if(results.some(person => person.name === name)) {
+            /* if(results.some(person => person.name === name)) {
                 console.log('already exists')
                 const removeIndex = results.findIndex(obj => obj.name === name);
                 results.splice(removeIndex, 1);
-                results.push(lookup[name]);
-            } else {
-                results.push(lookup[name]);
-            }
+            } else { */
+            results.push(lookup[name]);
+            
         };
     });
-    var sortedResult = results.sort((p1, p2) => p1.name > p2.name);
+    var sortedResult = removeDuplicates(results.sort((p1, p2) => p1.name > p2.name));
     return sortedResult; 
+}
+
+function removeDuplicates(arr) {
+    return [...new Set(arr)]
 }
 
 function searchInput(id) {
@@ -134,9 +137,17 @@ function listBuilder(results) {
         addElement('div', "resultat_liste", "hit_"+i, "hit-item")
         addElement('button', "hit_"+i, "name_"+results[i].id, "hit-name collapsible", results[i].name)
         addElement('div', "hit_"+i, "hit_"+i+"_content", "hit-info collapsed-content")
-        addElement('div', "hit_"+i+"_content", "birthdate_"+results[i].id, "hit-birth", results[i].birth_date)
-        addElement('div', "hit_"+i+"_content", "country_"+results[i].id, "hit-country", regionName.of(results[i].countries))
-        addElement('div', "hit_"+i+"_content", "category_"+results[i].id, "hit-category", results[i].dataset)
+        if (results[i].birth_date == '') {
+            addElement('div', "hit_"+i+"_content", "birthdate_"+results[i].id, "hit-birth", "Fødselsdato: Ingen tilgjengelig")
+        } else {
+            addElement('div', "hit_"+i+"_content", "birthdate_"+results[i].id, "hit-birth", "Fødselsdato: "+results[i].birth_date)
+        }
+        if (/cshh|csxx|ddde|suhh|yucs|gb-nir|gb-sct/.test(results[i].countries)) {
+            addElement('div', "hit_"+i+"_content", "country_"+results[i].id, "hit-country", "Land: "+results[i].countries)
+        } else {
+            addElement('div', "hit_"+i+"_content", "country_"+results[i].id, "hit-country", "Land: "+regionName.of(results[i].countries))
+        }
+        addElement('div', "hit_"+i+"_content", "category_"+results[i].id, "hit-category", "Kategorisering: "+results[i].dataset)
     }
 }
 
@@ -159,7 +170,7 @@ function executeSearch() {
     if (document.getElementById("resultat_liste")) {
         document.getElementById("resultat_liste").remove()
     }
-    addElement('ul', "resultater", "resultat_liste", "all-hits col-9")
+    addElement('ul', "resultater", "resultat_liste", "all-hits col-8")
     
     listBuilder(results)
     collapsible()
@@ -188,7 +199,7 @@ function collapsible() {
 
 
 /* ------- ENTER TO SEARCH ------- */
-$("#home_search_input").keyup(function(event) {
+/* $("#home_search_input").keyup(function(event) {
     if (event.keyCode === 13) {
         $("#home_search_button").click();
     }
@@ -198,5 +209,15 @@ $("#results_search_input").keyup(function(event) {
     if (event.keyCode === 13) {
         $("#search_icon_button").click();
     }
-});
+}); */
 
+/* function hitEnter(inputfield, enterbutton) {
+    var input = document.getElementById(inputfield);
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            document.getElementById(enterbutton).click();
+        }
+    });
+}
+hitEnter("home_search_input", "home_search_button")
+hitEnter("results_search_input", "search_icon_button") */

@@ -54,6 +54,13 @@ header {
     transform: translate(-50%);
 }
 
+#resultat_liste {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    max-width: fit-content;
+}
+
 #search_block {
     position: absolute;
     top: auto;
@@ -77,6 +84,7 @@ footer {
     align-items: center;
     color: #A8A8A8;
     background: #FFFFFF;
+    margin-top: 40px;
 }
 
 #pepsjekk-logo {
@@ -90,32 +98,54 @@ footer {
 
 .search-description {
     margin-top: 15px;
-    margin-bottom: 0px;
+    margin-bottom: 40px;
     font-size: 1.3rem;
     font-weight: 400;
 }
 
-#home_search_input {
-    margin-top: 30px;
-}
-
-#results_search_input {
-    margin-top: 0px;
+#results_description {
     margin-bottom: 20px;
 }
 
-input {
+form {
+    display: flex;
+    flex-direction:row;
     width: 450px;
     height: 50px;
-    font-weight: 300;
-    font-size: x-large;
-    background: #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 50px;
+    margin: auto;
+}
+
+input {
+    flex-grow:2;
     border: 1px solid #848484;
     box-sizing: border-box;
     border-radius: 50px;
     padding-left: 20px;
     padding-right: 100px;
+    font-weight: 300;
+    font-size: x-large;
+    background: #FFFFFF;
+    z-index: 1;
 }
+
+#search_icon_button {
+    width: 30px;
+    color: transparent;
+    background-color: transparent;
+    border: none;
+    z-index: 1;
+}
+
+/* #home_search_input input {
+    margin-top: 30px !important;
+}
+
+#results_search_form form {
+    margin-top: 0px !important;
+    margin-bottom: 40px !important;
+} */
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #a8a8a8;
@@ -147,14 +177,6 @@ input {
 
 .button:hover {
     background-color: #982727;
-}
-
-#search_icon_button {
-    margin-left: -50px;
-    margin-top: 20px;
-    width: 30px;
-    background-color: transparent;
-    border: none;
 }
 
 .hidden {
@@ -210,18 +232,9 @@ input {
 }
 
 .hit-birth, .hit-country, .hit-category {
-    padding: 10px;
+    text-align: left;
+    padding: 20px 40px;
 }
-
-/* .hit-item {
-    width: 100%;
-    height: 80px;
-    margin-top: 20px;
-    align-items: center;
-
-    background: #FFFFFF;
-    border-radius: 5px;
-} */
 
 /* For mobile phones: */
 [class*="col-"] {
