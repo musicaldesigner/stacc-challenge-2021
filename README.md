@@ -1,13 +1,10 @@
 # Stacc code challenge 2021
 
 ## Oppgavebeskrivelse
-Her kan beskrive hvilke oppgave(r) du har valgt å løse.
-> Bekriv prosjektet ditt kort.
+Jeg har valgt å lage en enkel webapp som lar brukeren utføre en KYC-sjekk av én person.
 
 ## Hvordan kjøre prosjektet
-For eksempel ***yarn start***
-> Husk å pakke med alle avhengigheter.
+Åpne index.html eller kjør den i localhost.
 
 ## Kommentarer
-Noen spesielle valg du ønsker å beskrive/forsvare?
-> Eventuellt andre kommentarer / utfordringer?
+Siden jeg er tryggest på frontend har jeg bygget det hele med HTML, CSS og Javascript. Jeg har benyttet meg av pep.csv siden jeg hadde CORS problemer med API-et i begynnelsen. Jeg kjenner noe Python, men har ikke lært ennå hvordan man anvender det til å bygge en app. Om jeg hadde tid å lære noe som Flask eller Django, ville jeg brukt Python for å håndtere dataen.
