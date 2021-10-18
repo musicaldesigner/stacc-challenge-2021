@@ -8,4 +8,4 @@
 
 ## Kommentarer
 > Siden jeg er tryggest på frontend har jeg bygget det hele med HTML, CSS og Javascript.
-> Jeg kjenner noe Python, men har ikke lært hvordan anvende det til å bygge en app.
+> Jeg kjenner noe Python, men har ikke lært ennå hvordan man anvender det til å bygge en app.
