@@ -22,19 +22,6 @@
 
         <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script>
-            $("#home_search_input").keyup(function(event) {
-                if (event.keyCode === 13) {
-                    $("#home_search_button").click();
-                }
-            });
-
-            $("#results_search_input").keyup(function(event) {
-                if (event.keyCode === 13) {
-                    $("#search_icon_button").click();
-                }
-            }); 
-        </script>
         <script defer src="scripts/pepsjekk.js"></script>
     </head>
 
@@ -66,7 +53,6 @@
                     </form>
                     <h1 id="resultater_heading">Resultater<span id="antall_hits"></span></h1>
                 </div>
-                
             </section>
         </main>
         <footer><p class="center"><span class="iconify" data-icon="ant-design:copyright-circle-outlined"></span> 2021 PEPSJEKK</p></footer>
