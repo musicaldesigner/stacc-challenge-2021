@@ -38,19 +38,19 @@
             <section id="hjem" class="col-12 center visible">
                 <h1 id="hjem-heading">Utfør en PEP-sjekk</h1>
                 <p class="search-description">Tast inn et navn for å søke i vår database</p>
-                <input type="text" id="pep_search_input" onfocus="this.value=''" placeholder="Donald Trump">
-                <button type="button" id="pep_search_button" class="button center" onclick="executeSearch()">START</button>
+                <input type="text" id="home_search_input" onfocus="this.value=''" placeholder="Donald Trump">
+                <button type="button" id="home_search_button" class="button center" onclick="executeSearch()">START</button>
             </section>
             <section id="resultater" class="col-12 center hidden">
-                <div id="search_block">
+                <div id="search_block center">
                     <p class="search-description">Tast inn et navn for å søke igjen</p>
                     <form action="">
-                        <input type="text" id="pep_search_input" onfocus="this.value=''" placeholder="Donald Trump">
+                        <input type="text" id="results_search_input" onfocus="this.value=''" placeholder="Donald Trump">
                         <button type="button" id="search_icon_button" onclick="executeSearch()">
                             <span class="iconify search-icon" data-icon="bi:search" style="color: #a52020;" data-height="30"></span>
                         </button>
                     </form>
-                    <h1 id="resultater_heading">Resultater</h1>
+                    <h1 id="resultater_heading">Resultater<span id="antall_hits"></span></h1>
                 </div>
                 
             </section>
