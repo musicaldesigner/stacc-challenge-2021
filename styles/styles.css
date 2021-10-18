@@ -2,33 +2,189 @@
     box-sizing: border-box;
 }
 
-body {
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+.center {
+    margin: auto;
+    text-align: center;
+}
+
+html {
     font-family: "Open Sans", sans-serif;;
+}
+
+body {
     background-color: rgba(160, 160, 160, .10);
 }
 
-/* Nav */
-nav {
-    position: absolute;
+/* Header */
+header {
     width: 100%;
     height: 80px;
+    position: absolute;
     left: 0px;
     top: 0px;
+    z-index: 99;
 
     background: #FFFFFF;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
 }
 
-.pepsjekk_logo {
+#hjem {
     position: absolute;
-    width: 107px;
-    height: 33px;
-    left: 21px;
-    top: 22px;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -40%);
+}
 
-    /* identical to box height */
+#search_block {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%, -10%);
+}
 
+
+
+h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0px;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
+    color: #A8A8A8;
+    background: #FFFFFF;
+}
+
+#pepsjekk-logo {
+    position: absolute;
+    margin: 30px 0 30px 30px;
+    float: left;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+}
+
+.search-description {
+    margin-top: 15px;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+
+
+input {
+    margin-top: 30px;
+    width: 450px;
+    height: 50px;
+    font-weight: 300;
+    font-size: x-large;
+    background: #FFFFFF;
+    border: 1px solid #848484;
+    box-sizing: border-box;
+    border-radius: 50px;
+    padding-left: 20px;
+    padding-right: 100px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #a8a8a8;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #a8a8a8;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #a8a8a8;
+  }
+
+.button {
+    margin-top: 30px;
+    width: 265px;
+    height: 60px;
+    display: block;
+    border: none;
+    font-size: 1.5rem;
+    text-decoration: none;
+    align-items: center;
     text-align: center;
+    color: #FFFFFF;
+    background-color: #A52020;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #982727;
+}
+
+#search_icon_button {
+    margin-left: -50px;
+    width: 30px;
+    background-color: transparent;
+    border: none;
+}
+
+.hidden {
+    display: none;
+}
+  
+.visible {
+    display: block;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+  
+@media only screen and (min-width: 600px) {
+/* For tablets: */
+    .col-s-1 {width: 8.33%;}
+    .col-s-2 {width: 16.66%;}
+    .col-s-3 {width: 25%;}
+    .col-s-4 {width: 33.33%;}
+    .col-s-5 {width: 41.66%;}
+    .col-s-6 {width: 50%;}
+    .col-s-7 {width: 58.33%;}
+    .col-s-8 {width: 66.66%;}
+    .col-s-9 {width: 75%;}
+    .col-s-10 {width: 83.33%;}
+    .col-s-11 {width: 91.66%;}
+    .col-s-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+/* For desktop: */
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
 }

@@ -14,24 +14,48 @@
         <!-- normalize.css -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
         <!-- font-family -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
         <!-- min egen stylesheet -->
         <link rel="stylesheet" href="styles/styles.css">
 
         <script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
-        <script defer src="scripts/test.js"></script>
+        <script defer src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script defer src="scripts/jquery-csv.js"></script>
+        <script defer src="scripts/pepsjekk.js"></script>
     </head>
 
     <body>
-        <nav>
-            <div class="pepsjekk-logo">
-                <img src="images/PEPSJEKK.svg" alt="pepsjekk-logo">
-            </div></nav>
-        <h1>Utfør en PEP-sjekk</h1>
-        <p>Tast inn et navn for å søke i vår database</p>
-        <input type="text" id="pep_search_input" onfocus="this.value=''" placeholder="Donald Trump">
-        <button type="button" id="pep_search_button" onclick="">START</button>
-        <footer><span class="iconify" data-icon="ant-design:copyright-circle-outlined"></span> 2021 PEPSJEKK</footer>
+        <header>
+            <div id="pepsjekk-logo">
+                <a href="index.html">
+                    <img src="images/PEPSJEKK.svg" alt="pepsjekk-logo">
+                </a>
+            </div>
+        </header>
+        <main class="row">
+            <section id="hjem" class="col-12 center visible">
+                <h1 id="hjem-heading">Utfør en PEP-sjekk</h1>
+                <p class="search-description">Tast inn et navn for å søke i vår database</p>
+                <input type="text" id="pep_search_input" onfocus="this.value=''" placeholder="Donald Trump">
+                <button type="button" id="pep_search_button" class="button center" onclick="executeSearch()">START</button>
+            </section>
+            <section id="resultater" class="col-12 center hidden">
+                <div id="search_block">
+                    <p class="search-description">Tast inn et navn for å søke igjen</p>
+                    <form action="">
+                        <input type="text" id="pep_search_input" onfocus="this.value=''" placeholder="Donald Trump">
+                        <button type="button" id="search_icon_button" onclick="executeSearch()">
+                            <span class="iconify search-icon" data-icon="bi:search" style="color: #a52020;" data-height="30"></span>
+                        </button>
+                    </form>
+                    <h1 id="resultater_heading">Resultater</h1>
+                </div>
+                
+            </section>
+        </main>
+        <footer><p class="center"><span class="iconify" data-icon="ant-design:copyright-circle-outlined"></span> 2021 PEPSJEKK</p></footer>
     </body>
 
 </html>
